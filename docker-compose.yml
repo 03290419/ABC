@@ -1,0 +1,33 @@
+version: '0.1'
+services:
+  db:
+    container_name: abc-db
+    image: mysql:8.0
+    command: --default-authentication-plugin=${MYSQL_NATIVE_PASSWORD}
+    restart: always
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${TYPEORM_PASSWORD}
+      MYSQL_DATABASE: ${TYPEORM_DATABASE}
+    networks:
+      - abcnetwork
+  migration:
+    build: .
+    command: dbmate migrate
+    depends_on:
+      - db
+    networks:
+      - abcnetwork
+  app:
+    container_name: abc-app
+    build: .
+    ports:
+      - '8080:8000'
+    depends_on:
+      - migration
+    networks:
+      - abcnetwork
+
+networks:
+  abcnetwork:
