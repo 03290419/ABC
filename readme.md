@@ -78,3 +78,39 @@ ABC-Martens 는 <a href="https://www.drmartens.co.kr/">Dr.Martens</a> 홈페이�
 ## 🗄️ 기획문서
 
 <a href="https://fern-shape-a88.notion.site/ABC-Martens-017c63872abf45489f890abbc6fa7e53?pvs=4">기획 문서 바로가기 </a>
+
+## How To Migration
+
+### 컨테이너 마이그레이션
+
+해당 프로젝트는 도커 컨테이너를 이용해 테스트 환경을 재현할 수 있습니다.
+
+```sh
+docker-compose up -d
+```
+
+로컬의 8080 포트에 바인드된 컨테이너 앱에 요청을 보내 컨테이너화 된 앱에서 기능 동작 테스트가 가능합니다.
+
+❗️ docker-compose 명령 후 환경변수 바인딩이 제대로 동작하지 않아 컨테이너를 재시작해야 하는 이슈가 있습니다.
+
+- 요청 uri: http://localhost:8080
+
+최소한으로 요구되는 환경변수
+
+```env
+TYPEORM_CONNECTION = mysql
+TYPEORM_HOST = abc-db
+TYPEORM_USERNAME = root
+TYPEORM_PASSWORD = test
+TYPEORM_DATABASE = ABCMartens
+TYPEORM_PORT = 3306
+TYPEORM_LOGGING=TRUE
+PORT = 8000
+JWT_SECRET="ABC_Martnes!@#$098"
+```
+
+### 테스트 실행
+
+POSTMAN 에서 MY APIS.postman_collection.json을 import 후 collection test를 실행합니다.
+
+<img src="./postman.png"  alt="포스트맨"/>
