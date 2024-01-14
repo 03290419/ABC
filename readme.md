@@ -91,6 +91,9 @@ docker-compose up -d
 
 로컬의 8080 포트에 바인드된 컨테이너 앱에 요청을 보내 컨테이너화 된 앱에서 기능 동작 테스트가 가능합니다.
 
+<img src="./docker.png"  alt="포스트맨"/>
+</br>
+
 ❗️ docker-compose 명령 후 환경변수 바인딩이 제대로 동작하지 않아 컨테이너를 재시작해야 하는 이슈가 있습니다.
 
 - 요청 uri: http://localhost:8080
