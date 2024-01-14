@@ -50,14 +50,18 @@ const addProductOrderController = async (req, res, next) => {
     const { productOptionId } = req.params;
     const { quantity, addressId } = req.body;
     if (!quantity || !addressId) throwError(400, 'key error');
-    const message = await addProductOrderService({
+    const data = await addProductOrderService({
       id,
       productOptionId,
       ...req.body,
     });
-    if (message) {
-      res.json(201).status({
-        message,
+    if (!isEmpty(data)) {
+      return res.status(201).json({
+        message: data.message,
+        data: {
+          orderNo: data.orderNo,
+          userUid: data.userUid,
+        },
       });
     }
     throwError(400);
@@ -72,9 +76,15 @@ const addProductOrdersController = async (req, res, next) => {
     const { id } = req.userData;
     const { productList, addressId } = req.body;
     if (isEmpty(productList) || !addressId) throwError(400, 'key error');
-    const message = await addProductOrdersService({ id, ...req.body });
-    if (message) {
-      res.status(201).json(message);
+    const data = await addProductOrdersService({ id, ...req.body });
+    if (!isEmpty(data)) {
+      return res.status(201).json({
+        message: data.message,
+        data: {
+          orderNo: data.orderNo,
+          userUid: data.userUid,
+        },
+      });
     }
     throwError(400);
   } catch (err) {
