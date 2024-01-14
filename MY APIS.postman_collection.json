@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "83dd890f-acdc-43b9-ae48-7b2012cad860",
+		"name": "MY APIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29684589"
+	},
+	"item": [
+		{
+			"name": "ABC",
+			"item": [
+				{
+					"name": "회원가입",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nickname\": \"포스트맨 테스트\",\n    \"password\": \"123Test&&&\",\n    \"email\": \"test123@gmail.com\",\n    \"birthDate\": \"19940603\",\n    \"phoneNumber\": \"010-6555-5555\",\n    \"gender\": \"F\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "로그인",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const jsonData = pm.response.json();",
+									"    const token = jsonData.accessToken;",
+									"    pm.environment.set(\"jwt_token\", token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"123Test&&&\",\n    \"email\": \"test123@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "상품 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products?categoryId=1&sortBy=ranking&page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "1"
+								},
+								{
+									"key": "sortBy",
+									"value": "ranking"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\b상품 상세 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/goods/detail/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"goods",
+								"detail",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\b장바구니 상품 추가 - 단일",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": 220,\n\t\"quantity\": 1,\n\t\"color\": \"black\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carts/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "장바구니 상품 추가",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productList\":[\n    \t{\n\t\t\t\"productId\": 3,\n\t\t\t\"size\": 220,\n\t\t\t\"quantity\": 1,\n\t\t\t\"color\": \"black\"\n\t\t},\n\t\t{\n\t\t\t\"productId\": 4,\n\t\t\t\"size\": 230,\n\t\t\t\"quantity\": 2,\n\t\t\t\"color\": \"black\"\n\t\t}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "장바구니 상품 수정 - 단일",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"productOptionId\": 3, \n\t\"size\": 240,\n\t\"quantity\": 3,\n\t\"color\": \"black\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carts/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "장바구니 상품 수정",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productList\": [\n        {\n\t\t\t\"productId\": 4,\n\t\t\t\"size\": 240,\n\t\t\t\"quantity\": 1,\n\t\t\t\"color\": \"black\",\n            \"productOptionId\": \"17\"\n\t\t},\n\t\t{\n\t\t\t\"productId\": 7,\n\t\t\t\"size\": 230,\n\t\t\t\"quantity\": 2,\n\t\t\t\"color\": \"black\",\n            \"productOptionId\": \"26\"\n\t\t}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "장바구니 상품 삭제 - 단일",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"size\": 240,\n\t\"quantity\": 3,\n\t\"color\": \"black\",\n    \"isDeleted\": \"Y\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carts/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "장바구니 상품 삭제",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productList\": [\n        {\n\t\t\t\"productId\": 4,\n\t\t\t\"size\": 240,\n\t\t\t\"quantity\": 1,\n\t\t\t\"color\": \"black\",\n            \"productOptionId\": \"17\",\n            \"isDeleted\": \"Y\"\n\t\t},\n\t\t{\n\t\t\t\"productId\": 7,\n\t\t\t\"size\": 230,\n\t\t\t\"quantity\": 2,\n\t\t\t\"color\": \"black\",\n            \"productOptionId\": \"26\",\n            \"isDeleted\": \"Y\"\n\t\t}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "장바구니 리스트 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "주소 저장",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderName\": \"김코드\",\n    \"detailAddress\": \"1-123\",\n    \"streetAddress\": \"무슨무슨길 11\",\n    \"zipCode\": \"223223\",\n    \"phoneNumber\": \"010-0000-000\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/orders/address",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "주소 가져오기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/orders/address",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "주문 정보 추가 - 단일",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 5,\n    \"addressId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "주문 정보 추가",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productList\": [\n        { \"productOptionId\": 1, \"quantity\": 230 },\n        { \"productOptionId\": 2, \"quantity\": 230 }\n    ],\n    \"addressId\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
