@@ -41,7 +41,6 @@ app.post('/users', async (req, res) => {
       provider,
     } = req.body;
 
-    console.log(req.body);
     // key error (필수, 입력 정보 없을 경우)
     if (
       !nickname ||
@@ -178,10 +177,4 @@ app.use((err, _, res, next) => {
   });
 });
 
-app.listen(
-  app.get('port'),
-  process.env.NODE === 'production' ? '0.0.0.0' : '127.0.0.1',
-  () => {
-    console.log(`server is running`);
-  },
-);
+app.listen(app.get('port'), console.log(`server is running`));
