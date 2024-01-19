@@ -12,10 +12,10 @@ ABC-Martens 는 <a href="https://www.drmartens.co.kr/">Dr.Martens</a> 홈페이�
 
     Backend(4)
 
-<table>qqqqqqq    
+<table>   
   <tr>
     <th>Author</th>
-    <th>Author</th>qqqqqq
+    <th>Author</th>
     <th>Author</th>
     <th>Author</th>
   </tr>
