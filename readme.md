@@ -6,16 +6,16 @@ ABC-Martens 는 <a href="https://www.drmartens.co.kr/">Dr.Martens</a> 홈페이�
 
 ## 1. 제작기간
 
-    2023.10.09 ~ 2023.10.26
+    2023.09.18 ~ 2023.10.06
 
 ## 2. 참여 인원
 
     Backend(4)
 
-<table>
+<table>qqqqqqq    
   <tr>
     <th>Author</th>
-    <th>Author</th>
+    <th>Author</th>qqqqqq
     <th>Author</th>
     <th>Author</th>
   </tr>
@@ -114,6 +114,6 @@ JWT_SECRET="ABC_Martnes!@#$098"
 
 ### 테스트 실행
 
-POSTMAN 에서 MY APIS.postman_collection.json을 import 후 collection test를 실행합니다.
+POSTMAN 에서 MY APIS.postman_collection.json, MY APIS.postman_environment을 import 후 collection test를 실행합니다.
 
 <img src="./postman.png"  alt="포스트맨"/>
