@@ -12,7 +12,7 @@ ABC-Martens 는 <a href="https://www.drmartens.co.kr/">Dr.Martens</a> 홈페이�
 
     Backend(4)
 
-<table>
+<table>   
   <tr>
     <th>Author</th>
     <th>Author</th>
@@ -114,6 +114,6 @@ JWT_SECRET="ABC_Martnes!@#$098"
 
 ### 테스트 실행
 
-POSTMAN 에서 MY APIS.postman_collection.json을 import 후 collection test를 실행합니다.
+POSTMAN 에서 MY APIS.postman_collection.json, MY APIS.postman_environment을 import 후 collection test를 실행합니다.
 
 <img src="./postman.png"  alt="포스트맨"/>
